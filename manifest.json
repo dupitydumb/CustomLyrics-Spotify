@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Lyrics Modifier",
+  "description": "This extension modifies the appearance of lyrics on a webpage",
+  "version": "1.0",
+  "action": {
+    "default_icon": "caticon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.spotify.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "permissions": ["activeTab", "storage"]
+}
