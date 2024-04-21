@@ -18,22 +18,22 @@
 
 <h3>Installation Guide</h3>
 
-Download the Extension Files
+<h4>1. Download the Extension Files</h4>
 
 The extension files can be downloaded from the GitHub repository. Click on the green "Code" button and then select "Download ZIP". Extract the ZIP file to a location of your choice.
 
-Open Chrome Extensions Page
+<h4>2. Open Chrome Extensions Page</h4>
 
 Open the Chrome browser and navigate to chrome://extensions. This will open the Extensions page.
 
-Enable Developer Mode
+<h4>3. Enable Developer Mode</h4>
 
 In the top right corner of the Extensions page, there's a toggle for "Developer mode". Turn this on.
 
-Load Unpacked Extension
+<h4>4. Load Unpacked Extension</h4>
 
 Click on the "Load unpacked" button that appears when Developer mode is enabled. This will open a file selection dialog.
 
-Select the Extension Directory
+<h4>5. Select the Extension Directory</h4>
 
 In the file selection dialog, navigate to the location where you extracted the ZIP file. Select the directory and click "Open".
