@@ -2,7 +2,9 @@
 var lyricsColor = "rgba(182, 139, 139, 1)";
 var inactiveLyricsColor = "#000000";
 
-ActivateLyrics();
+window.onload = function () {
+  ActivateLyrics();
+};
 
 function ActivateLyrics() {
   chrome.storage.sync.get(

@@ -2,18 +2,38 @@
 ![Static Badge](https://img.shields.io/badge/Release-v1.0-blue)
 [![Github Stars badge](https://img.shields.io/github/stars/dupitydumb/LyricsPlus-Spotify?style=social)](https://github.com/dupitydumb/LyricsPlus-Spotify/)
 
-
 <h1>Lyrics Plus for spotify</h1>
 <h3>A Better Looking Lyrics!</h3>
 
-LyricsPlus            |  Spotify Default
-:-------------------------:|:-------------------------:
-![2024-04-21 13-38-05](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/296f389f-5dd8-4633-a8d6-826302fc1464) |  ![2024-04-21 13-38-36](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/c6d83853-8f79-4384-a019-4ffbee5ec4bf) |
-Easy to see| Hard to see
-Compact | Crowded hard to follow
-Customize Color | One Color
-
+|                                                          LyricsPlus                                                           |                                                        Spotify Default                                                        |
+| :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
+| ![2024-04-21 13-38-05](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/296f389f-5dd8-4633-a8d6-826302fc1464) | ![2024-04-21 13-38-36](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/c6d83853-8f79-4384-a019-4ffbee5ec4bf) |
+|                                                          Easy to see                                                          |                                                          Hard to see                                                          |
+|                                                            Compact                                                            |                                                    Crowded hard to follow                                                     |
+|                                                        Customize Color                                                        |                                                           One Color                                                           |
 
 <h3>Customize your own lyrics</h3>
 
 ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/b8530974-efca-4436-a8dd-79512bf5f102)
+
+<h3>Installation Guide</h3>
+
+Download the Extension Files
+
+The extension files can be downloaded from the GitHub repository. Click on the green "Code" button and then select "Download ZIP". Extract the ZIP file to a location of your choice.
+
+Open Chrome Extensions Page
+
+Open the Chrome browser and navigate to chrome://extensions. This will open the Extensions page.
+
+Enable Developer Mode
+
+In the top right corner of the Extensions page, there's a toggle for "Developer mode". Turn this on.
+
+Load Unpacked Extension
+
+Click on the "Load unpacked" button that appears when Developer mode is enabled. This will open a file selection dialog.
+
+Select the Extension Directory
+
+In the file selection dialog, navigate to the location where you extracted the ZIP file. Select the directory and click "Open".
