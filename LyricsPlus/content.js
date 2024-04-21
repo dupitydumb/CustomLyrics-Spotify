@@ -41,9 +41,21 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
           // Add CSS rules to the style element. You can replace the CSS inside the backticks with your own.
           style.innerHTML = `
+
+            @keyframes glow {
+              0% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
+              }
+              50% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+              }
+              100% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
+              }
+            }
             .nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw{
               --lyrics-color-active: ${data.lyricsColor};
-              text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.3) !important;
+              animation: glow 2s infinite;
               font-weight: 900;
               opacity: 1;
             }
@@ -119,6 +131,10 @@ function SetActiveColor() {
   );
   if (element) {
     element.style.setProperty("opacity", "1");
+    //text size
+    element.style.setProperty("font-size", "80px");
+
+    //wiggle effect
   }
 }
 
