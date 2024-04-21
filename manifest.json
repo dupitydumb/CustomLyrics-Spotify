@@ -12,7 +12,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.spotify.com/*"],
+      "matches": ["*://*.spotify.com/lyrics"],
       "js": ["content.js"],
       "css": ["styles.css"]
     }

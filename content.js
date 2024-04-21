@@ -48,7 +48,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
               opacity: 1;
             }
             .nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk {
-              opacity: 0.2; !important;
+              opacity: 0.2;
             }
             .nw6rbs8R08fpPn7RWW2w {
               margin-top: 80px !important;
@@ -102,19 +102,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           // Append the style element to the head of the document
           document.head.appendChild(style);
 
-          var observer = new MutationObserver(function (mutations) {
-            // For each mutation
-            mutations.forEach(function (mutation) {
-              // If nodes were added or removed
-              if (mutation.type === "childList") {
-                // Run the SetActiveColor function
-                SetActiveColor();
-              }
-            });
-          });
-
-          // Start observing the document with the configured parameters
-          observer.observe(document, { childList: true, subtree: true });
+          setInterval(ResetOpacity, 300);
+          // Set the active color
+          setInterval(SetActiveColor, 320);
         }
       }
     );
@@ -123,12 +113,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 function SetActiveColor() {
   console.log("Setting active color");
+
   var element = document.querySelector(
     ".nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw"
   );
   if (element) {
-    element.style.setProperty("opacity", "1", "important");
+    element.style.setProperty("opacity", "1");
   }
+}
+
+function ResetOpacity() {
+  var elements = document.querySelectorAll(
+    ".nw6rbs8R08fpPn7RWW2w.vapgYYF2HMEeLJuOWGq5.aeO5D7ulxy19q4qNBrkk"
+  );
+  elements.forEach(function (element) {
+    // do something with element
+    element.style.removeProperty("opacity");
+  });
 }
 
 function SetColor() {
@@ -149,10 +150,10 @@ function SetColor() {
     elemntActive.style.setProperty("font-size", "60px");
   }
   var elementPass = document.querySelector(
-    ".nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk"
+    "nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk"
   );
   if (elementPass) {
-    elementPass.style.setProperty("--webkit-opacity", 0.5);
+    elementPass.style.removeProperty("opacity");
   }
 
   var elementLyrics = document.querySelector(".nw6rbs8R08fpPn7RWW2w");
