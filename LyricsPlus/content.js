@@ -39,7 +39,7 @@ if (window.location.href.includes("spotify.com")) {
 function ActivateLyrics() {
   chrome.storage.sync.get(
     {
-      lyricsColor: "#FFF000",
+      lyricsColor: "",
       inactiveLyricsColor: "",
       backgroundColor: "",
       glowColor: "",

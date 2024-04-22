@@ -14,7 +14,9 @@
 
 <h3>Customize your own lyrics</h3>
 
-![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/b8530974-efca-4436-a8dd-79512bf5f102)
+|                                                       V1                                                        |                                                       V2                                                        |
+| :-------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: |
+| ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/b8530974-efca-4436-a8dd-79512bf5f102) | ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/ff57ef28-3ac0-4bf5-ae78-8d2622183a9b) |
 
 <h3>Installation Guide</h3>
 
