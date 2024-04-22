@@ -1,23 +1,32 @@
 //const defult color
-var lyricsColor = "rgba(182, 139, 139, 1)";
-var inactiveLyricsColor = "#000000";
+
+const isRunning = false;
 
 window.onload = function () {
   ActivateLyrics();
 };
-
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "refreshColors") {
+    // Refresh the colors
+    ActivateLyrics();
+  }
+});
 function ActivateLyrics() {
   chrome.storage.sync.get(
     {
-      lyricsColor: "rgba(182, 139, 139, 1)",
-      inactiveLyricsColor: "#000000",
-      glowColor: "#000000",
-      enableCheckbox: false,
-      gradientCheckbox: false,
-      shadowCheckbox: false,
-      glowCheckbox: false,
+      lyricsColor: "#FFF000",
+      inactiveLyricsColor: "",
+      backgroundColor: "",
+      glowColor: "",
+      enableCheckbox: "",
+      gradientCheckbox: "",
+      shadowCheckbox: "",
+      glowCheckbox: "",
     },
     function (data) {
+      console.log("Lyrics color is set to " + data.lyricsColor);
+      console.log("Background color is set to " + data.backgroundColor);
+
       if (window.location.href.includes("spotify.com")) {
         var element = document.querySelector(".FUYNhisXTCmbzt9IDxnT");
         if (element) {
@@ -32,35 +41,69 @@ function ActivateLyrics() {
           );
           element.style.setProperty(
             "--lyrics-color-background",
-            data.backgroundImage
+            data.backgroundColor
           );
           element.style.setProperty("--lyrics-color-messaging", "rgb(0, 0, 0)");
           element.style.setProperty("text-align", "center");
         }
 
+        //if gradient is enabled, create style element and add gradient animation
+
+        if (data.gradientCheckbox) {
+          var style = document.createElement("style");
+          style.innerHTML = `
+            @keyframes gradient {
+              0% {
+                background-position: 0% 50%;
+              }
+              50% {
+                background-position: 100% 50%;
+              }
+              100% {
+                background-position: 0% 50%;
+              }
+            }
+            .o4GE4jG5_QICak2JK_bn {
+              background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+              background-size: 400% 400%;
+              animation: gradient 15s ease infinite;
+              height: 100vh;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+
+        //if glow is enabled, create style element and add glow animation
+
+        if (data.glowCheckbox) {
+          var style = document.createElement("style");
+          style.innerHTML = `
+            @keyframes glow {
+              0% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
+              }
+              50% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
+              }
+              100% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
+              }
+            }
+
+            .nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw{
+              --lyrics-color-active: ${data.lyricsColor};
+              animation: glow 2s infinite;
+              font-weight: 900;
+              opacity: 1;
+            }
+            `;
+          document.head.appendChild(style);
+        }
+
         // Create a new style element
         var style = document.createElement("style");
-
         // Add CSS rules to the style element. You can replace the CSS inside the backticks with your own.
         style.innerHTML = `
-
-          @keyframes glow {
-            0% {
-              text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
-            }
-            50% {
-              text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            100% {
-              text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
-            }
-          }
-          .nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw{
-            --lyrics-color-active: ${data.lyricsColor};
-            animation: glow 2s infinite;
-            font-weight: 900;
-            opacity: 1;
-          }
           .nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk {
             opacity: 0.2;
           }
@@ -91,34 +134,18 @@ function ActivateLyrics() {
           .nw6rbs8R08fpPn7RWW2w.vapgYYF2HMEeLJuOWGq5 {
             opacity: 0.2; !important;
           }
-
-          .o4GE4jG5_QICak2JK_bn {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            height: 100vh;
-          }
-
-
-          @keyframes gradient {
-            0% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-            100% {
-              background-position: 0% 50%;
-            }
-          }
         `;
 
         // Append the style element to the head of the document
         document.head.appendChild(style);
 
-        setInterval(ResetOpacity, 300);
-        // Set the active color
-        setInterval(SetActiveColor, 320);
+        if (!isRunning) {
+          setInterval(ResetOpacity, 300);
+          // Set the active color
+          setInterval(SetActiveColor, 320);
+
+          isRunning = true;
+        }
       }
     }
   );
@@ -155,8 +182,6 @@ function SetColor() {
     ".nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw"
   );
   if (elemntActive) {
-    elemntActive.style.setProperty("--lyrics-color-active", data.lyricsColor);
-
     //add glow effect
     element.style.setProperty(
       "text-shadow",

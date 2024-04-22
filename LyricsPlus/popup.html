@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Lyrics Modifier</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="popup.js"></script>
   <style>
     body {
@@ -199,12 +200,21 @@
       <input type="color" id="glowColor" name="glowColor" class="w-full mt-5" />
     </div>
   </div>
+  <div class="notice mt-2">
+    <p>Disabling glow need refresh</p>
+  </div>
   <div class="mt-5">
     <button id="save" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply</button>
   </div>
-  <div class="mt-10 text-center text-black">
+  <div class="mt-2 text-center text-black">
     <p>Credits: Your Name</p>
     <p>V1.0</p>
+    <a href="https://www.reddit.com/user/yourusername" target="_blank" class="mr-4 text-red-600">
+      <i class="fab fa-reddit-square fa-2x"></i>
+    </a>
+    <a href="https://twitter.com/yourusername" target="_blank" class="text-blue-600">
+      <i class="fab fa-twitter-square fa-2x"></i>
+    </a>
   </div>
 </body>
 </html>
