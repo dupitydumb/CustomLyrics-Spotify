@@ -17,7 +17,6 @@ window.onload = function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
   console.log("DOM loaded");
   // Get the "apply" button by its id
   var applyButton = document.getElementById("apply");
