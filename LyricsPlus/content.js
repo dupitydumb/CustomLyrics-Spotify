@@ -1,6 +1,6 @@
 //const defult color
 var lyricsColor = "rgba(182, 139, 139, 1)";
-var inactiveLyricsColor = "#000000";
+var inactiveLyricsColor = "#FFFFFF";
 
 window.onload = function () {
   ActivateLyrics();
