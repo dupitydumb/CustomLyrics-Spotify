@@ -4,8 +4,13 @@
   "description": "This extension modifies the appearance of lyrics on a webpage",
   "version": "1.0",
   "action": {
-    "default_icon": "caticon.png",
+    "default_icon": "LRicon.png",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "LRicon.png",
+    "48": "LRicon.png",
+    "128": "LRicon.png"
   },
   "background": {
     "service_worker": "background.js"
