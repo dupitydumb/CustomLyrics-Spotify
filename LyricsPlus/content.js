@@ -4,19 +4,55 @@ window.onload = function () {
   ActivateLyrics();
 };
 
+
+
 function ActivateLyrics() {
   chrome.storage.sync.get(
     {
-      lyricsColor: lyricsColor,
-      inactiveLyricsColor: lyricsInactiveColor,
-      backgroundColor: backgroundColor,
-      glowColor: glowColor,
-      active : activateCheckbox,
-      glowactive : glowCheckbox,
-      shadowactive : shadowCheckbox,
-      gradientactive : gradientCheckbox
+      lyricsColor: "#FFFFFF",
+      inactiveLyricsColor: "#FFFFFF",
+      backgroundColor: "#FF0000",
+      glowColor: "#FF0000",
+      active: false,
+      glowactive: false,
+      shadowactive: false,
+      gradientactive: false,
     },
     function (data) {
+      if (!data.lyricsColor)
+      {
+        data.lyricsColor = "#FF0000";
+      }
+      if (!data.inactiveLyricsColor)
+      {
+        data.inactiveLyricsColor = "#FF0000";
+      }
+      if (!data.backgroundColor)
+      {
+        data.backgroundColor = "#FF0000";
+      }
+      if (!data.glowColor)
+      {
+        data.glowColor = "#FF0000";
+      }
+      if (!data.active)
+      {
+        data.active = false;
+      }
+      if (!data.glowactive)
+      {
+        data.glowactive = false;
+      }
+      if (!data.shadowactive)
+      {
+        data.shadowactive = false;
+      }
+      if (!data.gradientactive)
+      {
+        data.gradientactive = false;
+      }
+
+
       if (window.location.href.includes("spotify.com")) {
         var element = document.querySelector(".FUYNhisXTCmbzt9IDxnT");
         if (element) {
