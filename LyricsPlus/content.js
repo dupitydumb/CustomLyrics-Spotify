@@ -1,6 +1,4 @@
-//const defult color
-var lyricsColor = "rgba(182, 139, 139, 1)";
-var inactiveLyricsColor = "#FFFFFF";
+//if chorome storage is empety
 
 window.onload = function () {
   ActivateLyrics();
@@ -9,11 +7,14 @@ window.onload = function () {
 function ActivateLyrics() {
   chrome.storage.sync.get(
     {
-      lyricsColor: "rgba(182, 139, 139, 1)",
-      inactiveLyricsColor: "#000000",
-      backgroundImage:
-        "url('https://i.scdn.co/image/ab67616d00001e02529c6fa82d23f65076c1579b')",
-      glowColor: "#000000",
+      lyricsColor: lyricsColor,
+      inactiveLyricsColor: lyricsInactiveColor,
+      backgroundColor: backgroundColor,
+      glowColor: glowColor,
+      active : activateCheckbox,
+      glowactive : glowCheckbox,
+      shadowactive : shadowCheckbox,
+      gradientactive : gradientCheckbox
     },
     function (data) {
       if (window.location.href.includes("spotify.com")) {
