@@ -11,9 +11,11 @@ function ActivateLyrics() {
     {
       lyricsColor: "rgba(182, 139, 139, 1)",
       inactiveLyricsColor: "#000000",
-      backgroundImage:
-        "url('https://i.scdn.co/image/ab67616d00001e02529c6fa82d23f65076c1579b')",
       glowColor: "#000000",
+      enableCheckbox: false,
+      gradientCheckbox: false,
+      shadowCheckbox: false,
+      glowCheckbox: false,
     },
     function (data) {
       if (window.location.href.includes("spotify.com")) {

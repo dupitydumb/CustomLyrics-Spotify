@@ -2,10 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get the current colors from the storage
   chrome.storage.sync.get(
     {
-      lyricsColor: "#000000",
-      inactiveLyricsColor: "#000000",
-      backgroundColor: "#ffffff",
-      glowColor: "#000000",
+      lyricsColor: "",
+      inactiveLyricsColor: "",
+      backgroundColor: "",
+      glowColor: "",
+      enableCheckbox: "",
+      gradientCheckbox: "",
+      shadowCheckbox: "",
+      glowCheckbox: "",
     },
     function (data) {
       document.getElementById("lyricsColor").value = data.lyricsColor;
@@ -13,6 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
         data.inactiveLyricsColor;
       document.getElementById("backgroundColor").value = data.backgroundColor;
       document.getElementById("glowColor").value = data.glowColor;
+      //Set checkbox values
+      document.getElementById("enableSwitch").checked = data.enableCheckbox;
+      document.getElementById("gradientSwitch").checked = data.gradientCheckbox;
+      document.getElementById("shadowSwitch").checked = data.shadowCheckbox;
+      document.getElementById("glowSwitch").checked = data.glowCheckbox;
     }
   );
 
@@ -24,12 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
     var lyricsColor = document.getElementById("lyricsColor").value;
     var backgroundColor = document.getElementById("backgroundColor").value;
     var glowColor = document.getElementById("glowColor").value;
+    var enableCheckbox = document.getElementById("enableSwitch").checked;
+    var gradientCheckbox = document.getElementById("gradientSwitch").checked;
+    var shadowCheckbox = document.getElementById("shadowSwitch").checked;
+    var glowCheckbox = document.getElementById("glowSwitch").checked;
     chrome.storage.sync.set(
       {
         lyricsColor: lyricsColor,
         inactiveLyricsColor: lyricsInactiveColor,
         backgroundColor: backgroundColor,
         glowColor: glowColor,
+        enableCheckbox: enableCheckbox,
+        gradientCheckbox: gradientCheckbox,
+        shadowCheckbox: shadowCheckbox,
+        glowCheckbox: glowCheckbox,
       },
       function () {
         console.log("Lyrics color is set to " + lyricsColor);
