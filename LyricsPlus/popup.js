@@ -63,3 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("translate").addEventListener("click", function () {
+    var language = document.getElementById("language").value;
+
+    // Send a message to the content script to translate the elements
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        action: "translate",
+        language: language,
+      });
+    });
+  });
+});
