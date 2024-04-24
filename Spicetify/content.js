@@ -3,7 +3,7 @@ let isRunning = false;
 const SpicetifyPlatfrom = Spicetify.Platform;
 const data = {
   lyricsColor: "#ffffff",
-  inactiveLyricsColor: "#232323",
+  inactiveLyricsColor: "#1c1c1c63",
   backgroundColor: "#000",
   glowColor: "#ffffff",
   enableCheckbox: true,
