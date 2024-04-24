@@ -1,0 +1,11 @@
+[
+  {
+    "name": "LyricsPlus+",
+    "description": "Dynamic Background and more",
+    "preview": "./preview/preview.gif",
+    "main": "./Spicetify/content.js",
+    "readme": "README.md",
+    "authors": [{ "name": "AvKos", "url": "https://github.com/dupitydumb" }],
+    "tags": ["lyrics", "fullscreen", "background"]
+  }
+]
