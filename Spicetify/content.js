@@ -39,7 +39,7 @@ function loadScript(url, callback) {
   script.onload = callback;
   document.head.appendChild(script);
 }
-console.log("content.js is running");
+console.log("content.js is running version 1.0.0");
 // The async modifier allows for the user of await, which converts a promise into an object, when not using await, async is not necessary.
 (async function extension() {
   // The following code segment waits for platform to load before running the code, this is important to avoid errors. When using things such as Player or URI, it is necessary to add those as well.
