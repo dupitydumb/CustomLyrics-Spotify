@@ -92,6 +92,7 @@ function LoadColorGradient() {
               var img = new Image();
               img.crossOrigin = "Anonymous"; // This enables CORS
               img.src = imageUrl;
+              img.className = "albumImageGenerated";
               img.id = "albumImage";
               var div = document.createElement("div");
               div.id = "albumImageDiv";
@@ -135,6 +136,8 @@ function LoadColorGradient() {
                 // Log the color palette
                 console.log("Color palette:", colorPaletteHex);
                 console.log("Gradient color:", gradientColor);
+
+                DeleteGeneratedImage();
               } else {
                 //Try again if image is not loaded
 
@@ -155,6 +158,14 @@ function LoadColorGradient() {
   }
 }
 
+function DeleteGeneratedImage() {
+  //select all generated image
+  var element = document.querySelectorAll(".albumImageGenerated");
+  //remove all generated image
+  element.forEach(function (element) {
+    element.remove();
+  });
+}
 // Select the node that will be observed for mutations
 var targetNode = document.body;
 
