@@ -12,7 +12,7 @@
 |                                                            Compact                                                            |                                                    Crowded hard to follow                                                     |
 |                                                        Customize Color                                                        |                                                           One Color                                                           |
 
-<h5>Only availabe with chrome extension verison</h5>
+<h5>Customization Only available with chrome extension version</h5>
 <h3>Customize your own lyrics</h3>
 
 |                                                       V1                                                        |                                                       V2                                                        |
