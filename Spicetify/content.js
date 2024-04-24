@@ -92,10 +92,10 @@ function LoadColorGradient() {
               var img = new Image();
               img.crossOrigin = "Anonymous"; // This enables CORS
               img.src = imageUrl;
-              img.className = "albumImageGenerated";
               img.id = "albumImage";
               var div = document.createElement("div");
               div.id = "albumImageDiv";
+              div.className = "albumImageGenerated";
 
               // Append the image to the div
               div.appendChild(img);
