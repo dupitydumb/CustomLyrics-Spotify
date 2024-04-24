@@ -28,6 +28,9 @@ let gradientColor = [
 
 let dominantColor = "#ee7752";
 
+//Store image
+var albumImage;
+
 //Add Spicetify module
 function loadScript(url, callback) {
   var script = document.createElement("script");
@@ -93,20 +96,13 @@ function LoadColorGradient() {
               img.crossOrigin = "Anonymous"; // This enables CORS
               img.src = imageUrl;
               img.id = "albumImage";
-              var div = document.createElement("div");
-              div.id = "albumImageDiv";
-              div.className = "albumImageGenerated";
 
-              // Append the image to the div
-              div.appendChild(img);
-
-              // Append the div to the body
-              document.body.appendChild(div);
+              albumImage = img;
 
               if (img.complete) {
                 console.log("Image loaded");
                 //Get color palette from the album image
-                var colorPalette = colorThief.getPalette(img, 10);
+                var colorPalette = colorThief.getPalette(albumImage, 10);
 
                 // colorPalette to hex
 
@@ -119,7 +115,7 @@ function LoadColorGradient() {
                   );
                 });
 
-                var domColor = colorThief.getColor(img);
+                var domColor = colorThief.getColor(albumImage);
 
                 var dominantColorToHex =
                   "#" +
