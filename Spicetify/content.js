@@ -96,9 +96,11 @@ function LoadColorGradient() {
               img.crossOrigin = "Anonymous"; // This enables CORS
               img.src = imageUrl;
               img.id = "albumImage";
-
+              img.className = "albumImageGenerated";
               albumImage = img;
 
+              //Remove albumImage
+              document.querySelector("#albumImage").remove();
               if (img.complete) {
                 console.log("Image loaded");
                 //Get color palette from the album image
