@@ -100,7 +100,7 @@ function LoadColorGradient() {
               albumImage = img;
 
               //Remove albumImage
-              document.querySelector("#albumImage").remove();
+
               if (img.complete) {
                 console.log("Image loaded");
                 //Get color palette from the album image
@@ -158,6 +158,7 @@ function LoadColorGradient() {
 
 function DeleteGeneratedImage() {
   //select all generated image
+  document.querySelector("#albumImage").remove();
   var element = document.querySelectorAll(".albumImageGenerated");
   //remove all generated image
   element.forEach(function (element) {

@@ -5,6 +5,7 @@
   <title>Lyrics Modifier</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="jscolor.js"></script>
   <script src="popup.js"></script>
   <style>
     body {
@@ -189,10 +190,14 @@
     <div class="selector">
       <label for="lyricsColor" class="block">lyrics color:</label>
       <input type="color" id="lyricsColor" name="lyricsColor" class="w-full mt-5" />
+      <label for="lyricsColorOpacity" class="block">opacity:</label>
+      <input type="range" id="lyricsColorOpacity" name="lyricsColorOpacity" min="0" max="1" step="0.05" value="1" class="w-full" />
     </div>
     <div class="selector">
       <label for="lyricsinactiveColor" class="block">inactive color:</label>
       <input type="color" id="lyricsinactiveColor" name="lyricsinactiveColor" class="w-full mt-5" />
+      <label for="lyricsinactiveColorOpacity" class="block">opacity:</label>
+      <input type="range" id="lyricsinactiveColorOpacity" name="lyricsinactiveColorOpacity" min="0" max="1" step="0.05" value="0.5" class="w-full" />
     </div>
     <div class="selector">
       <label for="backgroundColor" class="block">bg color:</label>

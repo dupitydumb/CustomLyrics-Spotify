@@ -40,3 +40,5 @@ Click on the "Load unpacked" button that appears when Developer mode is enabled.
 Select the Extension Directory
 
 In the file selection dialog, navigate to the location where you extracted the ZIP file. Select the directory and click "Open".
+
+[![Report bug](https://img.shields.io/badge/report-bug-red)](https://github.com/dupitydumb/LyricsPlus-Spotify/issues/new)
