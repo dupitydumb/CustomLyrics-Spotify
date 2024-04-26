@@ -1,5 +1,5 @@
 [![wakatime](https://wakatime.com/badge/user/018d31fe-3aa7-4182-b700-de75c394a4ff/project/018ef7cf-b9a0-49ae-b3f8-09a4da42e9b0.svg)](https://wakatime.com/badge/user/018d31fe-3aa7-4182-b700-de75c394a4ff/project/018ef7cf-b9a0-49ae-b3f8-09a4da42e9b0)
-![Static Badge](https://img.shields.io/badge/Release-v1.0-blue)](https://github.com/dupitydumb/LyricsPlus-Spotify/releases/tag/V0.2)
+[![Static Badge](https://img.shields.io/badge/Release-v0.2-blue)](https://github.com/dupitydumb/LyricsPlus-Spotify/releases/tag/V0.2)
 [![Github Stars badge](https://img.shields.io/github/stars/dupitydumb/LyricsPlus-Spotify?style=social)](https://github.com/dupitydumb/LyricsPlus-Spotify/)
 
 <h1>Lyrics Plus for spotify</h1>
