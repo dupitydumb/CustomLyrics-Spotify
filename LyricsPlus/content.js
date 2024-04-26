@@ -47,24 +47,29 @@ function ActivateLyrics() {
       gradientCheckbox: "",
       shadowCheckbox: "",
       glowCheckbox: "",
+      lyricsColorOpacity: "",
+      inactiveLyricsColorOpacity: "",
     },
     function (data) {
       if (data.enableCheckbox) {
         // If the current URL is spotify.com
         if (window.location.href.includes("spotify.com")) {
+          let lyricsColorRgb = hexToRgb(data.lyricsColor);
+          let inactiveLyricsColorRgb = hexToRgb(data.inactiveLyricsColor);
+
+          let lyricsColorRgba = `rgba(${lyricsColorRgb.r}, ${lyricsColorRgb.g}, ${lyricsColorRgb.b}, ${data.lyricsColorOpacity})`;
+          let inactiveLyricsColorRgba = `rgba(${inactiveLyricsColorRgb.r}, ${inactiveLyricsColorRgb.g}, ${inactiveLyricsColorRgb.b}, ${data.inactiveLyricsColorOpacity})`;
+
           var element = document.querySelector(".FUYNhisXTCmbzt9IDxnT");
           if (element) {
-            element.style.setProperty(
-              "--lyrics-color-active",
-              data.lyricsColor
-            );
+            element.style.setProperty("--lyrics-color-active", lyricsColorRgba);
             element.style.setProperty(
               "--lyrics-color-inactive",
-              data.inactiveLyricsColor
+              inactiveLyricsColorRgba
             );
             element.style.setProperty(
               "--lyrics-color-passed",
-              data.inactiveLyricsColor
+              inactiveLyricsColorRgba
             );
             element.style.setProperty(
               "--lyrics-color-background",
@@ -193,6 +198,16 @@ function SetActiveColor() {
 
     //wiggle effect
   }
+}
+function hexToRgb(hex) {
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
 function ResetOpacity() {

@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
       gradientCheckbox: "",
       shadowCheckbox: "",
       glowCheckbox: "",
+      lyricsColorOpacity: "",
+      inactiveLyricsColorOpacity: "",
     },
     function (data) {
       document.getElementById("lyricsColor").value = data.lyricsColor;
@@ -22,6 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("gradientSwitch").checked = data.gradientCheckbox;
       document.getElementById("shadowSwitch").checked = data.shadowCheckbox;
       document.getElementById("glowSwitch").checked = data.glowCheckbox;
+      document.getElementById("lyricsColorOpacity").value =
+        data.lyricsColorOpacity;
+      document.getElementById("lyricsinactiveColorOpacity").value =
+        data.inactiveLyricsColorOpacity;
     }
   );
 
@@ -37,6 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var gradientCheckbox = document.getElementById("gradientSwitch").checked;
     var shadowCheckbox = document.getElementById("shadowSwitch").checked;
     var glowCheckbox = document.getElementById("glowSwitch").checked;
+    var lyricsColorOpacity =
+      document.getElementById("lyricsColorOpacity").value;
+    var inactiveLyricsColorOpacity = document.getElementById(
+      "lyricsinactiveColorOpacity"
+    ).value;
     chrome.storage.sync.set(
       {
         lyricsColor: lyricsColor,
@@ -47,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
         gradientCheckbox: gradientCheckbox,
         shadowCheckbox: shadowCheckbox,
         glowCheckbox: glowCheckbox,
+        lyricsColorOpacity: lyricsColorOpacity,
+        inactiveLyricsColorOpacity: inactiveLyricsColorOpacity,
       },
       function () {
         console.log("Lyrics color is set to " + lyricsColor);
