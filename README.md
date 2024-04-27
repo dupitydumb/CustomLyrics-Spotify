@@ -13,6 +13,7 @@
 |                                                        Customize Color                                                        |                                                           One Color                                                           |
 
 <h2>Romanized Korean for easier to sing</h2>
+
 ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/3ac586ba-2580-4dd4-a500-30f962690c78)
 
 
