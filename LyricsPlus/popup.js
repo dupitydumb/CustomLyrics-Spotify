@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       glowCheckbox: "",
       lyricsColorOpacity: "",
       inactiveLyricsColorOpacity: "",
+      romanizeCheckbox: "",
     },
     function (data) {
       document.getElementById("lyricsColor").value = data.lyricsColor;
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data.lyricsColorOpacity;
       document.getElementById("lyricsinactiveColorOpacity").value =
         data.inactiveLyricsColorOpacity;
+      document.getElementById("romanizeSwitch").checked = data.romanizeCheckbox;
     }
   );
 
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var inactiveLyricsColorOpacity = document.getElementById(
       "lyricsinactiveColorOpacity"
     ).value;
+    var romanizeCheckbox = document.getElementById("romanizeSwitch").checked;
     chrome.storage.sync.set(
       {
         lyricsColor: lyricsColor,
@@ -60,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         glowCheckbox: glowCheckbox,
         lyricsColorOpacity: lyricsColorOpacity,
         inactiveLyricsColorOpacity: inactiveLyricsColorOpacity,
+        romanizeCheckbox: romanizeCheckbox,
       },
       function () {
         console.log("Lyrics color is set to " + lyricsColor);

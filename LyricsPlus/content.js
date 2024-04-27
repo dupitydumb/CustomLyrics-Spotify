@@ -2,6 +2,23 @@
 
 const isRunning = false;
 
+const koreanRomaji = require("@romanize/korean");
+
+function romanizeLyrics() {
+  console.log("Romanizing");
+  var lyrics = document.querySelectorAll(".BXlQFspJp_jq9SKhUSP3");
+  //Loop through all the elements
+  lyrics.forEach((element) => {
+    //Get the text from the element
+    var text = element.textContent;
+    //Romanize the text
+    var romanizedText = koreanRomaji.romanize(text);
+    //Set the romanized text to the element
+    element.textContent = romanizedText;
+    console.log(romanizedText);
+  });
+}
+
 window.onload = function () {
   ActivateLyrics();
 };
@@ -12,7 +29,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-if (window.location.href.includes("spotify.com")) {
+if (window.location.href.includes("open.spotify.com/lyrics")) {
   // Select the node that will be observed for mutations
   var targetNode = document.body;
 
@@ -49,11 +66,15 @@ function ActivateLyrics() {
       glowCheckbox: "",
       lyricsColorOpacity: "",
       inactiveLyricsColorOpacity: "",
+      romanizeCheckbox: "",
     },
     function (data) {
       if (data.enableCheckbox) {
         // If the current URL is spotify.com
-        if (window.location.href.includes("spotify.com")) {
+        if (window.location.href.includes("open.spotify.com/lyrics")) {
+          if (data.romanizeCheckbox) {
+            romanizeLyrics();
+          }
           let lyricsColorRgb = hexToRgb(data.lyricsColor);
           let inactiveLyricsColorRgb = hexToRgb(data.inactiveLyricsColor);
 
@@ -247,3 +268,27 @@ function SetColor() {
     elementLyrics.style.setProperty("font-size", "50px");
   }
 }
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === "install") {
+    // This is a first install!
+    chrome.storage.sync.set(
+      {
+        lyricsColor: "ffffff",
+        inactiveLyricsColor: "ffffff",
+        backgroundColor: "000000",
+        glowColor: "ffffff",
+        enableCheckbox: true,
+        gradientCheckbox: true,
+        shadowCheckbox: true,
+        glowCheckbox: true,
+        lyricsColorOpacity: 1,
+        inactiveLyricsColorOpacity: 0.5,
+        romanizeCheckbox: false,
+      },
+      function () {
+        console.log("Default values set on first install.");
+      }
+    );
+  }
+});
