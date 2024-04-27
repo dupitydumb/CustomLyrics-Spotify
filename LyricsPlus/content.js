@@ -128,6 +128,15 @@ function ActivateLyrics() {
             `;
             document.head.appendChild(style);
           }
+          if (data.gradientCheckbox == false) {
+            var style = document.createElement("style");
+            style.innerHTML = `
+              .o4GE4jG5_QICak2JK_bn {
+                background: ${data.backgroundColor};
+              }
+            `;
+            document.head.appendChild(style);
+          }
 
           //if glow is enabled, create style element and add glow animation
 
