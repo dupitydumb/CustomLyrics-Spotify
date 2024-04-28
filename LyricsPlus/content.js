@@ -1,9 +1,6 @@
 //const defult color
-
 const isRunning = false;
-
 const koreanRomaji = require("@romanize/korean");
-
 function romanizeLyrics() {
   console.log("Romanizing");
   var lyrics = document.querySelectorAll(".BXlQFspJp_jq9SKhUSP3");
@@ -18,17 +15,6 @@ function romanizeLyrics() {
     console.log(romanizedText);
   });
 }
-
-window.onload = function () {
-  ActivateLyrics();
-};
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.action === "refreshColors") {
-    // Refresh the PAGE
-    location.reload();
-  }
-});
-
 if (window.location.href.includes("open.spotify.com/lyrics")) {
   // Select the node that will be observed for mutations
   var targetNode = document.body;
@@ -69,6 +55,8 @@ function ActivateLyrics() {
       romanizeCheckbox: "",
     },
     function (data) {
+      inactiveLyricsColor = data.inactiveLyricsColor;
+      lyricsColor = data.lyricsColor;
       if (data.enableCheckbox) {
         // If the current URL is spotify.com
         if (window.location.href.includes("open.spotify.com/lyrics")) {
@@ -83,24 +71,36 @@ function ActivateLyrics() {
 
           var element = document.querySelector(".FUYNhisXTCmbzt9IDxnT");
           if (element) {
-            element.style.setProperty("--lyrics-color-active", lyricsColorRgba);
-            element.style.setProperty(
-              "--lyrics-color-inactive",
-              inactiveLyricsColorRgba
-            );
-            element.style.setProperty(
-              "--lyrics-color-passed",
-              inactiveLyricsColorRgba
-            );
-            element.style.setProperty(
-              "--lyrics-color-background",
-              data.backgroundColor
-            );
-            element.style.setProperty(
-              "--lyrics-color-messaging",
-              "rgb(0, 0, 0)"
-            );
-            element.style.setProperty("text-align", "center");
+            var style = document.createElement("style");
+            style.innerHTML = `
+              .FUYNhisXTCmbzt9IDxnT {
+                color: ${data.lyricsColor};
+                --lyrics-color-active: ${lyricsColorRgba};
+                --lyrics-color-inactive: ${inactiveLyricsColorRgba};
+                --lyrics-color-passed: ${inactiveLyricsColorRgba};
+                --lyrics-color-background: ${data.backgroundColor};
+                --lyrics-color-messaging: rgb(0, 0, 0);
+              }
+            `;
+            document.head.appendChild(style);
+            // element.style.setProperty("--lyrics-color-active", lyricsColorRgba);
+            // element.style.setProperty(
+            //   "--lyrics-color-inactive",
+            //   inactiveLyricsColorRgba
+            // );
+            // element.style.setProperty(
+            //   "--lyrics-color-passed",
+            //   inactiveLyricsColorRgba
+            // );
+            // element.style.setProperty(
+            //   "--lyrics-color-background",
+            //   data.backgroundColor
+            // );
+            // element.style.setProperty(
+            //   "--lyrics-color-messaging",
+            //   "rgb(0, 0, 0)"
+            // );
+            // element.style.setProperty("text-align", "center");
           }
 
           //if gradient is enabled, create style element and add gradient animation
@@ -244,12 +244,15 @@ function ResetOpacity() {
   var elements = document.querySelectorAll(
     ".nw6rbs8R08fpPn7RWW2w.vapgYYF2HMEeLJuOWGq5.aeO5D7ulxy19q4qNBrkk"
   );
+
   elements.forEach(function (element) {
     // do something with element
     element.style.removeProperty("opacity");
   });
 }
 
+let inactiveLyricsColor;
+let lyricsColor;
 function SetColor() {
   var elemntActive = document.querySelector(
     ".nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw"
@@ -269,6 +272,7 @@ function SetColor() {
   );
   if (elementPass) {
     elementPass.style.removeProperty("opacity");
+    elementPass.style.setProperty("color", inactiveLyricsColor);
   }
 
   var elementLyrics = document.querySelector(".nw6rbs8R08fpPn7RWW2w");
@@ -299,5 +303,15 @@ chrome.runtime.onInstalled.addListener(function (details) {
         console.log("Default values set on first install.");
       }
     );
+  }
+});
+
+window.onload = function () {
+  ActivateLyrics();
+};
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "refreshColors") {
+    // Refresh the PAGE
+    location.reload();
   }
 });

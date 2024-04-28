@@ -1,11 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   //if first install
 
-  // Set the default colors when the popup is opened
-  document.getElementById("lyricsColor").value = "#ffffff";
-  document.getElementById("lyricsinactiveColor").value = "#ffffff";
-  document.getElementById("backgroundColor").value = "#000000";
-
   // Get the current colors from the storage
   chrome.storage.sync.get(
     {
