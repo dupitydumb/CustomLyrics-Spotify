@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
       glowColor: "",
       enableCheckbox: "",
       gradientCheckbox: "",
-      shadowCheckbox: "",
       glowCheckbox: "",
       lyricsColorOpacity: "",
       inactiveLyricsColorOpacity: "",
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //Set checkbox values
       document.getElementById("enableSwitch").checked = data.enableCheckbox;
       document.getElementById("gradientSwitch").checked = data.gradientCheckbox;
-      document.getElementById("shadowSwitch").checked = data.shadowCheckbox;
       document.getElementById("glowSwitch").checked = data.glowCheckbox;
       document.getElementById("lyricsColorOpacity").value =
         data.lyricsColorOpacity;
@@ -46,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
       var glowColor = document.getElementById("glowColor").value;
       var enableCheckbox = document.getElementById("enableSwitch").checked;
       var gradientCheckbox = document.getElementById("gradientSwitch").checked;
-      var shadowCheckbox = document.getElementById("shadowSwitch").checked;
       var glowCheckbox = document.getElementById("glowSwitch").checked;
       var lyricsColorOpacity =
         document.getElementById("lyricsColorOpacity").value;
@@ -62,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
           glowColor: glowColor,
           enableCheckbox: enableCheckbox,
           gradientCheckbox: gradientCheckbox,
-          shadowCheckbox: shadowCheckbox,
           glowCheckbox: glowCheckbox,
           lyricsColorOpacity: lyricsColorOpacity,
           inactiveLyricsColorOpacity: inactiveLyricsColorOpacity,

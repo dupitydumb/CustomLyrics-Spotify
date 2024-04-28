@@ -48,7 +48,6 @@ function ActivateLyrics() {
       glowColor: "",
       enableCheckbox: "",
       gradientCheckbox: "",
-      shadowCheckbox: "",
       glowCheckbox: "",
       lyricsColorOpacity: "",
       inactiveLyricsColorOpacity: "",
