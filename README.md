@@ -1,6 +1,13 @@
 # LyricsPlus
 If you find this project useful, please consider giving it a ⭐️. Thanks!
 
+## Note
+if you use spicetify you must have [lyrics-plus](https://github.com/spicetify/spicetify-cli/blob/master/CustomApps/lyrics-plus/README.md) custom apps to install run
+```bash
+spicetify config custom_apps lyrics-plus
+spicetify apply
+```
+
 [![Stars Badge](https://img.shields.io/github/stars/dupitydumb/LyricsPlus-Spotify?style=social)](https://github.com/dupitydumb/LyricsPlus-Spotify)
 ## Features
 * Korean romanization
