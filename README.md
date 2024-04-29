@@ -16,13 +16,16 @@ spicetify apply
 * Beautiful background
 * Glow effect
 
-### Customization
+## Customization
 
 Customize your own lyrics with our Chrome extension. 
 
 
 #### UI
 ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/a57cf1a8-5863-4585-8b6c-f5f3640535ea)
+
+### Glow And Gradient
+![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/a06b186a-d3ba-4db9-8865-8061ddeda643)
 
 
 ## Installation Guide
