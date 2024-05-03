@@ -2,11 +2,14 @@
 If you find this project useful, please consider giving it a ⭐️. Thanks!
 
 ## Note
+### Spicetify
 if you use spicetify you must have [lyrics-plus](https://github.com/spicetify/spicetify-cli/blob/master/CustomApps/lyrics-plus/README.md) custom apps to install run
 ```bash
 spicetify config custom_apps lyrics-plus
 spicetify apply
 ```
+### Chrome Extension
+if you use want to use the chrome extension you can download [latest release](https://github.com/dupitydumb/LyricsPlus-Spotify/tree/main/LyricsPlus) or [latest push](https://github.com/dupitydumb/LyricsPlus-Spotify/releases/tag/V0.3))
 
 [![Stars Badge](https://img.shields.io/github/stars/dupitydumb/LyricsPlus-Spotify?style=social)](https://github.com/dupitydumb/LyricsPlus-Spotify)
 ## Features
@@ -28,11 +31,11 @@ Customize your own lyrics with our Chrome extension.
 ![image](https://github.com/dupitydumb/LyricsPlus-Spotify/assets/37872714/a06b186a-d3ba-4db9-8865-8061ddeda643)
 
 
-## Installation Guide
+## Installation Guide Chrome
 
 Follow these steps to install the extension:
 
-1. **Download the Extension Files**: The extension files can be downloaded from the GitHub repository. Click on the green "Code" button and then select "Download ZIP". Extract the ZIP file to a location of your choice.
+1. **Download the Extension Files**: The extension files can be downloaded from the [Latest release](https://github.com/dupitydumb/LyricsPlus-Spotify/releases/) or the latest push. Extract the ZIP file to a location of your choice.
 
 2. **Open Chrome Extensions Page**: Open the Chrome browser and navigate to `chrome://extensions`. This will open the Extensions page.
 
