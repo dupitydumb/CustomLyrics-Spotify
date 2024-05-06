@@ -1,4 +1,4 @@
-# LyricsPlus for chrome
+# Custom Lyrics for chrome
 If you find this project useful, please consider giving it a ⭐️. Thanks!
 
 ## Note
