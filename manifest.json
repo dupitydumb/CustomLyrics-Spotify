@@ -1,11 +1,9 @@
-[
-  {
-    "name": "Lyrics++++",
-    "description": "Dynamic Background and more to added!",
-    "preview": "/Spicetify/preview/preview.gif",
-    "main": "/Spicetify/content.js",
-    "readme": "README.md",
-    "authors": [{ "name": "AvKov", "url": "https://github.com/dupitydumb" }],
-    "tags": ["lyrics", "fullscreen", "background"]
-  }
-]
+{
+  "name": "Lyrics++++",
+  "description": "Dynamic Background and more to added!",
+  "preview": "/Spicetify/preview/preview.gif",
+  "main": "/Spicetify/content.js",
+  "readme": "README.md",
+  "authors": [{ "name": "AvKov", "url": "https://github.com/dupitydumb" }],
+  "tags": ["lyrics", "fullscreen", "background"]
+}
