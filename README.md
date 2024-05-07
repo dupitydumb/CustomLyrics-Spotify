@@ -50,3 +50,8 @@ Follow these steps to install the extension:
 If you encounter any bugs, please report them by clicking the button below:
 
 [![Report bug](https://img.shields.io/badge/report-bug-red)](https://github.com/dupitydumb/LyricsPlus-Spotify/issues/new)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=dupitydumb/CustomLyrics-Spotify&type=Date)](https://star-history.com/#dupitydumb/CustomLyrics-Spotify&Date)
+
