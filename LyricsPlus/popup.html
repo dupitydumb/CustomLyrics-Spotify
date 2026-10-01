@@ -1,81 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lyrics Modifier</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script src="jscolor.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <script src="popup.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LyricsPlus settings</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
-<body class="p-5">
-  <div style="display: flex; justify-content: left; align-items: center; margin-bottom: 5px;">
-    <img src="LRicon.png" alt="Lyrics+" class="h-16 w-16"/>
-    <h1 class="text-2xl font-bold mb-5 text-center">Lyrics+</h1>
-  </div>
-  <div class="toogle">
-    <div class="checkbox-wrapper-14">
-      
-      <input id="enableSwitch" type="checkbox" class="switch">
-      <label for="active" class="lalal">Enable</label>
-    </div>
-    <div class="checkbox-wrapper-14">
-      
-      <input id="glowSwitch" type="checkbox" class="switch">
-      <label for="glow" class="lalal">Glow</label>
-    </div>
-    <div class="checkbox-wrapper-14">
-      
-      <input id="gradientSwitch" type="checkbox" class="switch">
-      <label for="gradient" class="lalal">Gradient</label>
-    </div>
-  </div>
-  <div class="LyricsAddon">
-    <div class="checkbox-wrapper-14">
-      
-      <input id="romanizeSwitch" type="checkbox" class="switch">
-      <label for="gradient" class="lalal">Romanize Korean</label>
-    </div>
-
-  </div>
-  </div>
-  <div class="grid grid-cols-2 gap-4">
-    <div class="selector">
-      <label for="lyricsColor" class="block">lyrics color:</label>
-      <input type="color" id="lyricsColor" name="lyricsColor" class="w-full mt-5" />
-      <label for="lyricsColorOpacity" class="block">opacity:</label>
-      <input type="range" id="lyricsColorOpacity" name="lyricsColorOpacity" min="0" max="1" step="0.1" value="1" class="w-full" />
-    </div>
-    <div class="selector">
-      <label for="lyricsinactiveColor" class="block">inactive color:</label>
-      <input type="color" id="lyricsinactiveColor" name="lyricsinactiveColor" class="w-full mt-5" />
-      <label for="lyricsinactiveColorOpacity" class="block">opacity:</label>
-      <input type="range" id="lyricsinactiveColorOpacity" name="lyricsinactiveColorOpacity" min="0" max="1" step="0.1" value="1" class="w-full" />
-    </div>
-    <div class="selector">
-      <label for="backgroundColor" class="block">bg color:</label>
-      <input type="color" id="backgroundColor" name="backgroundColor" class="w-full mt-5" />
-    </div>
-    <div class="selector">
-      <label for="glowColor" class="block">glow color:</label>
-      <input type="color" id="glowColor" name="glowColor" class="w-full mt-5" />
-    </div>
-  </div>
-  <div class="mt-5 d-flex align-items-center">
-    <button id="save" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Apply</button>
-    <p>Hit Refresh when not work</p>
-  </div>
-  <div class="mt-2 text-center text-black">
-    <p>Credits: Avkov</p>
-    <p>V1.0</p>
-    <a href="https://new.reddit.com/user/AvKov" target="_blank" class="mr-4 text-red-600">
-      <i class="fab fa-reddit-square fa-2x"></i>
-    </a>
-    <a href="https://github.com/dupitydumb/LyricsPlus-Spotify" target="_blank" class="text-blue">
-      <i class="fab fa-github-square fa-2x"></i>
-    </a>
-    <br>
-  </div>
+<body>
+  <header class="brand">
+    <img class="brand-logo" src="LRicon.png" alt="LyricsPlus original logo" width="40" height="40">
+    <div><h1>Lyrics<span>Plus</span></h1><p>Read along, your way · v1.1.4</p></div>
+  </header>
+  <main>
+    <p id="pageStatus" class="page-status" role="status">Checking Spotify lyrics…</p>
+    <section class="settings-card" aria-label="Lyrics settings">
+      <label class="setting-row primary" for="enabled"><span><strong>Enhance lyrics</strong><small>Pronunciation and reading controls</small></span><input id="enabled" type="checkbox" role="switch"></label>
+      <div class="divider"></div>
+      <label class="field-label" for="language">Pronunciation language</label>
+      <select id="language"><option value="none">Off — original lyrics</option><option value="korean">Korean</option><option value="japanese">Japanese kana</option><option value="chinese">Chinese pinyin</option><option value="thai">Thai</option></select>
+      <p class="hint">Japanese pronunciation currently covers kana.</p>
+      <div class="divider"></div>
+      <fieldset class="display-field"><legend>Show</legend><div class="segments"><label><input type="radio" name="display" value="original"><span>Read</span></label><label><input type="radio" name="display" value="pronunciation"><span>Pronounce</span></label><label><input type="radio" name="display" value="both"><span>Both</span></label></div></fieldset>
+      <div class="slider-field"><label for="fontSize">Lyrics size <output id="fontSizeValue">36px</output></label><div class="slider-line"><span class="size-small" aria-hidden="true">A</span><input id="fontSize" type="range" min="20" max="64" step="2"><span class="size-large" aria-hidden="true">A</span></div></div>
+      <div class="slider-field"><label for="lineSpacing">Line spacing <output id="lineSpacingValue">1.45</output></label><div class="slider-line"><span aria-hidden="true">☰</span><input id="lineSpacing" type="range" min="1" max="2" step="0.05"><span aria-hidden="true">☷</span></div></div>
+      <div class="divider"></div>
+      <label class="setting-row" for="highContrast"><span>High contrast</span><input id="highContrast" type="checkbox" role="switch"></label>
+      <label class="setting-row" for="reducedMotion"><span>Reduce motion</span><input id="reducedMotion" type="checkbox" role="switch"></label>
+    </section>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <footer><button id="openLyrics" type="button">Open lyrics ↗</button><a href="https://github.com/dupitydumb/LyricsPlus-Spotify/issues" target="_blank" rel="noopener noreferrer">Report an issue ↗</a></footer>
+  <script src="popup.js"></script>
 </body>
 </html>

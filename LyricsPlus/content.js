@@ -1,316 +1,198 @@
-//const defult color
-const isRunning = false;
-const koreanRomaji = require("@romanize/korean");
-function romanizeLyrics() {
-  console.log("Romanizing");
-  var lyrics = document.querySelectorAll(".BXlQFspJp_jq9SKhUSP3");
-  //Loop through all the elements
-  lyrics.forEach((element) => {
-    //Get the text from the element
-    var text = element.textContent;
-    //Romanize the text
-    var romanizedText = koreanRomaji.romanize(text);
-    //Set the romanized text to the element
-    element.textContent = romanizedText;
-    console.log(romanizedText);
-  });
-}
-if (window.location.href.includes("open.spotify.com/lyrics")) {
-  // Select the node that will be observed for mutations
-  var targetNode = document.body;
+const { convert } = require('./romanize');
 
-  // Options for the observer (which mutations to observe)
-  var config = { attributes: true, childList: true, subtree: true };
-
-  // Callback function to execute when mutations are observed
-  var callback = function (mutationsList, observer) {
-    for (let mutation of mutationsList) {
-      if (mutation.type === "childList") {
-        // Run your code here
-        ActivateLyrics();
-      }
-    }
-  };
-
-  // Create an observer instance linked to the callback function
-  var observer = new MutationObserver(callback);
-
-  // Start observing the target node for configured mutations
-  observer.observe(targetNode, config);
-}
-
-function ActivateLyrics() {
-  chrome.storage.sync.get(
-    {
-      lyricsColor: "",
-      inactiveLyricsColor: "",
-      backgroundColor: "",
-      glowColor: "",
-      enableCheckbox: "",
-      gradientCheckbox: "",
-      glowCheckbox: "",
-      lyricsColorOpacity: "",
-      inactiveLyricsColorOpacity: "",
-      romanizeCheckbox: "",
-    },
-    function (data) {
-      inactiveLyricsColor = data.inactiveLyricsColor;
-      lyricsColor = data.lyricsColor;
-      if (data.enableCheckbox) {
-        // If the current URL is spotify.com
-        if (window.location.href.includes("open.spotify.com/lyrics")) {
-          if (data.romanizeCheckbox) {
-            romanizeLyrics();
-          }
-          let lyricsColorRgb = hexToRgb(data.lyricsColor);
-          let inactiveLyricsColorRgb = hexToRgb(data.inactiveLyricsColor);
-
-          let lyricsColorRgba = `rgba(${lyricsColorRgb.r}, ${lyricsColorRgb.g}, ${lyricsColorRgb.b}, ${data.lyricsColorOpacity})`;
-          let inactiveLyricsColorRgba = `rgba(${inactiveLyricsColorRgb.r}, ${inactiveLyricsColorRgb.g}, ${inactiveLyricsColorRgb.b}, ${data.inactiveLyricsColorOpacity})`;
-
-          var element = document.querySelector(".FUYNhisXTCmbzt9IDxnT");
-          if (element) {
-            var style = document.createElement("style");
-            style.innerHTML = `
-              .FUYNhisXTCmbzt9IDxnT {
-                color: ${data.lyricsColor};
-                --lyrics-color-active: ${lyricsColorRgba};
-                --lyrics-color-inactive: ${inactiveLyricsColorRgba};
-                --lyrics-color-passed: ${inactiveLyricsColorRgba};
-                --lyrics-color-background: ${data.backgroundColor};
-                --lyrics-color-messaging: rgb(0, 0, 0);
-              }
-            `;
-            document.head.appendChild(style);
-            // element.style.setProperty("--lyrics-color-active", lyricsColorRgba);
-            // element.style.setProperty(
-            //   "--lyrics-color-inactive",
-            //   inactiveLyricsColorRgba
-            // );
-            // element.style.setProperty(
-            //   "--lyrics-color-passed",
-            //   inactiveLyricsColorRgba
-            // );
-            // element.style.setProperty(
-            //   "--lyrics-color-background",
-            //   data.backgroundColor
-            // );
-            // element.style.setProperty(
-            //   "--lyrics-color-messaging",
-            //   "rgb(0, 0, 0)"
-            // );
-            // element.style.setProperty("text-align", "center");
-          }
-
-          //if gradient is enabled, create style element and add gradient animation
-
-          if (data.gradientCheckbox) {
-            var style = document.createElement("style");
-            style.innerHTML = `
-              @keyframes gradient {
-                0% {
-                  background-position: 0% 50%;
-                }
-                50% {
-                  background-position: 100% 50%;
-                }
-                100% {
-                  background-position: 0% 50%;
-                }
-              }
-              .o4GE4jG5_QICak2JK_bn {
-                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-                background-size: 400% 400%;
-                animation: gradient 15s ease infinite;
-                height: 100vh;
-              }
-            `;
-            document.head.appendChild(style);
-          }
-          if (data.gradientCheckbox == false) {
-            var style = document.createElement("style");
-            style.innerHTML = `
-              .o4GE4jG5_QICak2JK_bn {
-                background: ${data.backgroundColor};
-              }
-            `;
-            document.head.appendChild(style);
-          }
-
-          //if glow is enabled, create style element and add glow animation
-
-          if (data.glowCheckbox) {
-            var style = document.createElement("style");
-            style.innerHTML = `
-              @keyframes glow {
-                0% {
-                  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
-                }
-                50% {
-                  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5);
-                }
-                100% {
-                  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.2);
-                }
-              }
-
-              .nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw{
-                --lyrics-color-active: ${data.lyricsColor};
-                animation: glow 2s infinite;
-                font-weight: 900;
-                opacity: 1;
-              }
-              `;
-            document.head.appendChild(style);
-          }
-
-          // Create a new style element
-          var style = document.createElement("style");
-          // Add CSS rules to the style element. You can replace the CSS inside the backticks with your own.
-          style.innerHTML = `
-            .nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk {
-              opacity: 0.2;
-            }
-            .nw6rbs8R08fpPn7RWW2w {
-              margin-top: 80px !important;
-              font-size: 60px !important;
-            }
-
-            .gqaWFmQeKNYnYD5gRv3x {
-              grid-area: 1 / 1 / -1 / -1;
-              width: 100%;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              background-size: contain;
-              overflow: hidden;
-              backdrop-filter: blur(22px);
-              height: -webkit-fill-available;
-            }
-            .gqaWFmQeKNYnYD5gRv3x ._Wna90no0o0dta47Heiw {
-              font-size: 2rem;
-              font-weight: 300;
-              align-self: center;
-              overflow: hidden;
-              height: 55vh;
-              margin-top: 10vh;
-            }
-
-            .nw6rbs8R08fpPn7RWW2w.vapgYYF2HMEeLJuOWGq5 {
-              opacity: 0.2; !important;
-            }
-          `;
-
-          // Append the style element to the head of the document
-          document.head.appendChild(style);
-
-          if (!isRunning) {
-            setInterval(ResetOpacity, 300);
-            // Set the active color
-            setInterval(SetActiveColor, 320);
-
-            isRunning = true;
-          }
-        }
-      }
-    }
-  );
-}
-
-function SetActiveColor() {
-  var element = document.querySelector(
-    ".nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw"
-  );
-  if (element) {
-    element.style.setProperty("opacity", "1");
-    //text size
-    element.style.setProperty("font-size", "80px");
-
-    //wiggle effect
-  }
-}
-function hexToRgb(hex) {
-  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
-function ResetOpacity() {
-  var elements = document.querySelectorAll(
-    ".nw6rbs8R08fpPn7RWW2w.vapgYYF2HMEeLJuOWGq5.aeO5D7ulxy19q4qNBrkk"
-  );
-
-  elements.forEach(function (element) {
-    // do something with element
-    element.style.removeProperty("opacity");
-  });
-}
-
-let inactiveLyricsColor;
-let lyricsColor;
-function SetColor() {
-  var elemntActive = document.querySelector(
-    ".nw6rbs8R08fpPn7RWW2w.EhKgYshvOwpSrTv399Mw"
-  );
-  if (elemntActive) {
-    //add glow effect
-    element.style.setProperty(
-      "text-shadow",
-      `0 0 5px rgba(182, 139, 139, 0.5), 0 0 10px rgba(182, 139, 139, 0.5), 0 0 15px rgba(182, 139, 139, 0.5), 0 0 20px rgba(182, 139, 139, 0.5)`
-    );
-
-    //Bigger font size
-    elemntActive.style.setProperty("font-size", "60px");
-  }
-  var elementPass = document.querySelector(
-    "nw6rbs8R08fpPn7RWW2w.aeO5D7ulxy19q4qNBrkk"
-  );
-  if (elementPass) {
-    elementPass.style.removeProperty("opacity");
-    elementPass.style.setProperty("color", inactiveLyricsColor);
-  }
-
-  var elementLyrics = document.querySelector(".nw6rbs8R08fpPn7RWW2w");
-  if (elementLyrics) {
-    elementLyrics.style.setProperty("margin-top", "50px");
-    elementLyrics.style.setProperty("font-size", "50px");
-  }
-}
-
-chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason === "install") {
-    // This is a first install!
-    chrome.storage.sync.set(
-      {
-        lyricsColor: "ffffff",
-        inactiveLyricsColor: "ffffff",
-        backgroundColor: "000000",
-        glowColor: "ffffff",
-        enableCheckbox: true,
-        gradientCheckbox: true,
-        shadowCheckbox: true,
-        glowCheckbox: true,
-        lyricsColorOpacity: 1,
-        inactiveLyricsColorOpacity: 0.5,
-        romanizeCheckbox: false,
-      },
-      function () {
-        console.log("Default values set on first install.");
-      }
-    );
-  }
+const DEFAULTS = Object.freeze({
+  enabled: true,
+  language: 'none',
+  display: 'both',
+  fontSize: 36,
+  lineSpacing: 1.45,
+  highContrast: false,
+  reducedMotion: false
 });
+// Spotify can show lyrics over any route; prefer its stable test IDs over CSS hashes.
+const LINE_SELECTOR = '[data-testid="lyrics-line"], [data-testid="lyrics-line-always-visible"], [data-testid="fullscreen-lyric"], [data-testid="lyrics-container"] p, [data-testid="lyrics-container"] [dir="auto"], .BXlQFspJp_jq9SKhUSP3';
+const processed = new Map();
+let settings = { ...DEFAULTS };
+let observer;
+let renderTimer;
+let currentUrl = location.href;
+let backgroundTarget;
+let lastArtworkUrl = '';
+const trackPreviewLines = new Set();
 
-window.onload = function () {
-  ActivateLyrics();
-};
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.action === "refreshColors") {
-    // Refresh the PAGE
-    location.reload();
+function updateTrackPreview() {
+  for (const line of trackPreviewLines) line.classList.remove('lyricsplus-track-preview');
+  trackPreviewLines.clear();
+  if (!location.pathname.startsWith('/track/')) return;
+  const heading = [...document.querySelectorAll('h1,h2,h3,h4')].find(node => node.textContent.trim() === 'Lyrics');
+  const section = heading?.closest('section') || heading?.parentElement?.parentElement;
+  if (!section) return;
+  for (const node of section.querySelectorAll('p,div,span')) {
+    if (node.children.length || node.closest('button,a') || !(heading.compareDocumentPosition(node) & 4)) continue;
+    const text = node.textContent.trim();
+    if (text.length < 2 || text.length > 180 || text === 'Lyrics') continue;
+    node.classList.add('lyricsplus-track-preview');
+    trackPreviewLines.add(node);
   }
+}
+
+function currentArtwork() {
+  const image = document.querySelector('[data-testid="now-playing-widget"] img') ||
+    document.querySelector('[data-testid="now-playing-bar"] img') ||
+    document.querySelector('footer img') ||
+    document.querySelector('[data-testid="cover-art-image"]');
+  return image?.currentSrc || image?.src || '';
+}
+
+function updateBackground(lines) {
+  let target;
+  if (location.pathname.startsWith('/lyrics') && lines.length >= 2) {
+    target = lines[0].parentElement;
+    while (target && !target.contains(lines[lines.length - 1])) target = target.parentElement;
+    if (target === document.body || target === document.documentElement) target = undefined;
+  }
+  if (backgroundTarget !== target) {
+    if (backgroundTarget) {
+      backgroundTarget.classList.remove('lyricsplus-background');
+      backgroundTarget.style.removeProperty('--lyricsplus-art');
+    }
+    backgroundTarget = target;
+    if (target) target.classList.add('lyricsplus-background');
+  }
+  if (!target) return;
+  const artwork = currentArtwork();
+  if (artwork && artwork !== lastArtworkUrl) {
+    lastArtworkUrl = artwork;
+    backgroundTarget.style.setProperty('--lyricsplus-art', `url(${JSON.stringify(artwork)})`);
+  } else if (artwork && !backgroundTarget.style.getPropertyValue('--lyricsplus-art')) {
+    backgroundTarget.style.setProperty('--lyricsplus-art', `url(${JSON.stringify(artwork)})`);
+  }
+}
+
+function openSpotifyLyrics() {
+  if (location.pathname.startsWith('/lyrics')) return true;
+  const button = document.querySelector('[data-testid="lyrics-button"], button[aria-label="Lyrics"], button[aria-label="Show lyrics"]');
+  if (!button) return false;
+  button.click();
+  return true;
+}
+
+function findLines() {
+  return [...document.querySelectorAll(LINE_SELECTOR)].filter(line =>
+    !line.parentElement?.closest(LINE_SELECTOR)
+  );
+}
+
+function cleanLine(line) {
+  const original = processed.get(line);
+  if (original) {
+    line.replaceChildren(...original.nodes);
+    processed.delete(line);
+  }
+  line.classList.remove('lyricsplus-line');
+}
+
+function cleanAll() {
+  for (const line of [...processed.keys()]) cleanLine(line);
+  for (const line of trackPreviewLines) line.classList.remove('lyricsplus-track-preview');
+  trackPreviewLines.clear();
+  if (backgroundTarget) {
+    backgroundTarget.classList.remove('lyricsplus-background');
+    backgroundTarget.style.removeProperty('--lyricsplus-art');
+    backgroundTarget = undefined;
+  }
+  document.documentElement.classList.remove('lyricsplus-enabled', 'lyricsplus-contrast', 'lyricsplus-reduced-motion');
+  document.documentElement.style.removeProperty('--lyricsplus-size');
+  document.documentElement.style.removeProperty('--lyricsplus-spacing');
+}
+
+function render() {
+  if (!settings.enabled) {
+    cleanAll();
+    return;
+  }
+  document.documentElement.classList.add('lyricsplus-enabled');
+  document.documentElement.classList.toggle('lyricsplus-contrast', settings.highContrast);
+  document.documentElement.classList.toggle('lyricsplus-reduced-motion', settings.reducedMotion);
+  document.documentElement.style.setProperty('--lyricsplus-size', `${settings.fontSize}px`);
+  document.documentElement.style.setProperty('--lyricsplus-spacing', String(settings.lineSpacing));
+
+  const lines = findLines();
+  updateTrackPreview();
+  updateBackground(lines);
+  const present = new Set(lines);
+  for (const line of [...processed.keys()]) {
+    if (!present.has(line) || line.dataset.lyricsplusLanguage !== settings.language || line.dataset.lyricsplusDisplay !== settings.display) cleanLine(line);
+  }
+  if (settings.language === 'none' || settings.display === 'original') return;
+
+  for (const line of lines) {
+    if (processed.has(line)) continue;
+    const originalText = line.textContent.trim();
+    if (!originalText) continue;
+    let pronunciation;
+    try {
+      pronunciation = convert(originalText, settings.language);
+    } catch (_error) {
+      continue;
+    }
+    if (!pronunciation || pronunciation === originalText) continue;
+    const nodes = [...line.childNodes];
+    const original = document.createElement('span');
+    original.className = 'lyricsplus-original';
+    original.textContent = originalText;
+    const phonetic = document.createElement('span');
+    phonetic.className = 'lyricsplus-pronunciation';
+    phonetic.textContent = pronunciation;
+    line.replaceChildren();
+    if (settings.display !== 'pronunciation') line.append(original);
+    if (settings.display !== 'original') line.append(phonetic);
+    line.classList.add('lyricsplus-line');
+    line.dataset.lyricsplusLanguage = settings.language;
+    line.dataset.lyricsplusDisplay = settings.display;
+    processed.set(line, { nodes });
+  }
+}
+
+function scheduleRender() {
+  if (renderTimer) return;
+  renderTimer = setTimeout(() => {
+    renderTimer = undefined;
+    if (location.href !== currentUrl) {
+      currentUrl = location.href;
+      cleanAll();
+    }
+    render();
+  }, 100);
+}
+
+chrome.storage.sync.get(DEFAULTS, value => {
+  settings = { ...DEFAULTS, ...value };
+  render();
+  observer = new MutationObserver(mutations => {
+    if (mutations.some(mutation => {
+      if (mutation.type === 'attributes') return mutation.attributeName === 'src';
+      if (mutation.type === 'characterData') return mutation.target.parentElement?.closest(LINE_SELECTOR);
+      return mutation.addedNodes.length || mutation.removedNodes.length;
+    })) scheduleRender();
+  });
+  observer.observe(document.documentElement, { childList: true, characterData: true, attributes: true, attributeFilter: ['src'], subtree: true });
 });
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'sync') return;
+  for (const [key, change] of Object.entries(changes)) {
+    if (Object.hasOwn(DEFAULTS, key)) settings[key] = change.newValue ?? DEFAULTS[key];
+  }
+  cleanAll();
+  scheduleRender();
+});
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message?.type === 'LYRICSPLUS_OPEN_LYRICS') {
+    sendResponse({ opened: openSpotifyLyrics() });
+    return;
+  }
+  if (message?.type !== 'LYRICSPLUS_STATUS') return;
+  sendResponse({ enabled: settings.enabled, lineCount: findLines().length, convertedCount: processed.size, display: settings.display, language: settings.language });
+});
+window.addEventListener('popstate', scheduleRender);
+window.addEventListener('hashchange', scheduleRender);

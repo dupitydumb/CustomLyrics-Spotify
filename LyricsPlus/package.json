@@ -1,6 +1,13 @@
 {
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "node --test tests/*.test.cjs"
+  },
   "dependencies": {
-    "@romanize/korean": "^0.1.1"
+    "@pcampus/thai-romanization": "^1.0.0",
+    "@romanize/korean": "^0.1.1",
+    "pinyin-pro": "^3.28.2",
+    "wanakana": "^5.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",

@@ -1,26 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "Lyrics Modifier",
-  "description": "This extension modifies the appearance of lyrics on a webpage",
-  "version": "1.0",
+  "name": "LyricsPlus — Read Along",
+  "description": "Make Spotify Web lyrics easier to read and add pronunciation for supported languages.",
+  "version": "1.1.4",
   "action": {
     "default_icon": "LRicon.png",
     "default_popup": "popup.html"
   },
-  "icons": {
-    "16": "LRicon.png",
-    "48": "LRicon.png",
-    "128": "LRicon.png"
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["*://*.spotify.com/lyrics"],
-      "js": ["content.js", "dist/bundle.js"],
-      "css": ["styles.css"]
-    }
-  ],
-  "permissions": ["activeTab", "storage"]
+  "icons": {"16": "LRicon.png", "48": "LRicon.png", "128": "LRicon.png"},
+  "content_scripts": [{
+    "matches": ["https://open.spotify.com/*"],
+    "js": ["dist/bundle.js"],
+    "css": ["content.css"]
+  }],
+  "permissions": ["storage"]
 }
